@@ -13,7 +13,7 @@
                     <p class="card-text">{{ $comic->sale_date }}</p>
                     <p class="card-text">{{ $comic->price }}</p>
                     <p class="card-text">{{ $comic->description }}</p>
-                    <a href="{{ route(comics.index)}}" class="btn btn-primary">back</a>
+                    <a href="{{ route('comics.index')}}" class="btn btn-primary">back</a>
                 </div>
             </div>
         </div>

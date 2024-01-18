@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('contents')
+@section('content')
 
 <div class="container">
 
@@ -24,7 +24,7 @@
         <td>{{$comic->series}}</td>
         <td>{{$comic->price}}</td>
         <td>
-            <a href="{{route('comics.show'), ['comic' => $comics->id]}}"> Details</a>
+            <a href="{{ route('comics.show', ['comic' => $comic->id]) }}" class="btn btn-primary"> Details</a>
         </td>
         </tr>
     @endforeach
