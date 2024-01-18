@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-auto">
+            <div class="col-12">
                 <form action="{{ route('comics.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -21,6 +21,10 @@
                     <div class="mb-3">
                         <label for="sale_date" class="form-label">Sale date</label>
                         <input type="date" class="form-control" id="sale_date" name="sale_date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="series" class="form-label">Series</label>
+                        <input type="text" class="form-control" id="series" name="series">
                     </div>
                     <div class="mb-3">
                         <label for="type" class="form-label">Type</label>

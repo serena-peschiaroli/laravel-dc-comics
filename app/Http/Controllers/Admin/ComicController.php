@@ -46,6 +46,7 @@ class ComicController extends Controller
         $comic->price = $form_input['price'];
         $comic->series = $form_input['series'];
         $comic->sale_date = $form_input['sale_date'];
+        $comic->type = $form_input['type'];
 
         $comic->save();
 
