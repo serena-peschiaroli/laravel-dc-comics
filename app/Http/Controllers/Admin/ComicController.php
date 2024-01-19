@@ -102,7 +102,8 @@ class ComicController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comic= Comic::findOrFail($id);
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -114,7 +115,32 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $errorMessages = [
+            'title.required' => 'Title field is required!',
+            'description.required' => 'please provide a descrpiption',
+            'thumb.url' => 'The thumb must be an url',
+            'price.numeric' => 'Please insert a numeric value',
+            'series.required' => 'Required field',
+            'sale_date.date' => 'Insert a valid date',
+            'type.required' => 'This field is required',
+        ];
+
+        $validated_form_update = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'thumb' => 'required|url',
+            'price' => 'required|numeric',
+            'series' => 'required|max:255',
+            'sale_date' => 'required|date',
+            'type' => 'required'
+        ], $errorMessages);
+
+        $comic = Comic::findOrFail($id);
+        $comic->update($validated_form_update);
+
+        return redirect()->route('comics.show', ['comic' => $comic->id])->with('success', 'Updated');
+
+
     }
 
     /**
