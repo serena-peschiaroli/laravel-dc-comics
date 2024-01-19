@@ -3,6 +3,11 @@
 @section('content')
 
 <div class="container">
+        @if (Session::has('message'))
+            <div class="alert alert-success">
+              {{ Session::get('message') }}
+            </div>
+        @endif
     <div class="row">
         <div class="col-12 mt-4">
             <div class="card" style="width: 25rem;">
