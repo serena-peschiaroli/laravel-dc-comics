@@ -3,6 +3,11 @@
 @section('content')
 
 <div class="container mt-5">
+  @if (Session::has('message'))
+      <div class="alert alert-success">
+          {{ Session::get('message') }}
+      </div>
+  @endif
 
     <table class="table">
           <thead>
@@ -19,7 +24,7 @@
                 
             
                 <tr>
-                <th scope="row">{{$comic->id}}</th>
+                <th scope="row"> # {{$comic->id}}</th>
                 <td>{{$comic->title}}</td>
                 <td>{{$comic->series}}</td>
                 <td>$ {{$comic->price}}</td>
