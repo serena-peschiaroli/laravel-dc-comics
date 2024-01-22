@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Mockery\Generator\StringManipulation\Pass\Pass;
@@ -36,47 +37,12 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {   
-        //sperimentazione con validazione ed errori
+        $form_input = $request->validated();
 
-        $errorMessages = [
-            'title.required' => 'Title field is required!',
-            'description.required' => 'please provide a descrpiption',
-            'thumb.url' => 'The thumb must be an url',
-            'price.numeric' => 'Please insert a numeric value',
-            'series.required' => 'Required field',
-            'sale_date.date'=> 'Insert a valid date',
-            'type.required'=> 'This field is required',
-        ];
+        $comic = Comic::create($form_input);
 
-        $validated_form_input = $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'thumb' => 'required|url',
-            'price' => 'required|numeric',
-            'series' => 'required|max:255',
-            'sale_date' => 'required|date',
-            'type' => 'required'
-        ], $errorMessages);
-
-        
-
-        //mass assigment per creare un nuovo comic
-
-        $comic = Comic::create($validated_form_input);
-
-        // $form_input = $request->all();
-        // $comic = new Comic();
-        // $comic->title = $form_input['title'];
-        // $comic->description = $form_input['description'];
-        // $comic->thumb = $form_input['thumb'];
-        // $comic->price = $form_input['price'];
-        // $comic->series = $form_input['series'];
-        // $comic->sale_date = $form_input['sale_date'];
-        // $comic->type = $form_input['type'];
-
-        // $comic->save();
 
         return redirect()->route('comics.show', ['comic'=>$comic->id] )->with('message', 'Comic created successfully');
     }
