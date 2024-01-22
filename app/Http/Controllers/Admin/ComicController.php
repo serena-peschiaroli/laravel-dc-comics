@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Mockery\Generator\StringManipulation\Pass\Pass;
@@ -79,32 +80,14 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateComicRequest $request, $id)
     {
-        $errorMessages = [
-            'title.required' => 'Title field is required!',
-            'description.required' => 'please provide a descrpiption',
-            'thumb.url' => 'The thumb must be an url',
-            'price.numeric' => 'Please insert a numeric value',
-            'series.required' => 'Required field',
-            'sale_date.date' => 'Insert a valid date',
-            'type.required' => 'This field is required',
-        ];
+        
+        $form_input = $request->validated();
+        $comic_update = Comic::findOrFail($id);
+        $comic_update->update($form_input);
 
-        $validated_form_update = $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'thumb' => 'required|url',
-            'price' => 'required|numeric',
-            'series' => 'required|max:255',
-            'sale_date' => 'required|date',
-            'type' => 'required'
-        ], $errorMessages);
-
-        $comic = Comic::findOrFail($id);
-        $comic->update($validated_form_update);
-
-        return redirect()->route('comics.show', ['comic' => $comic->id])->with('message', 'Updated');
+        return redirect()->route('comics.show', ['comic' => $comic_update->id])->with('message', 'Updated');
 
 
     }
