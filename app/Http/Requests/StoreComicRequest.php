@@ -37,13 +37,13 @@ class StoreComicRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Title field is required!',
-            'description.required' => 'please provide a descrpiption',
-            'thumb.url' => 'The thumb must be an url',
-            'price.numeric' => 'Please insert a numeric value',
-            'series.required' => 'Required field',
-            'sale_date.date' => 'Insert a valid date',
-            'type.required' => 'This field is required',
+            'title.required' => 'Il campo "titolo" è richiesto',
+            'description.required' => 'Inserisci una descrizione',
+            'thumb.url' => 'Il campo "immagine" deve contenere un URL valido',
+            'price.numeric' => 'Per favore, inserisci un valore numerico',
+            'series.required' => 'Il campo "series" è richiesto',
+            'sale_date.date' => 'Inserisci una data valida',
+            'type.required' => 'Questo campo è richiesto',
 
         ];
     }

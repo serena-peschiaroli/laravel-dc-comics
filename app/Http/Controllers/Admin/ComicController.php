@@ -45,7 +45,7 @@ class ComicController extends Controller
         $comic = Comic::create($form_input);
 
 
-        return redirect()->route('comics.show', ['comic'=>$comic->id] )->with('message', 'Comic created successfully');
+        return redirect()->route('comics.show', ['comic'=>$comic->id] )->with('message', 'Record creato con successo');
     }
 
     /**
@@ -87,7 +87,7 @@ class ComicController extends Controller
         $comic_update = Comic::findOrFail($id);
         $comic_update->update($form_input);
 
-        return redirect()->route('comics.show', ['comic' => $comic_update->id])->with('message', 'Updated');
+        return redirect()->route('comics.show', ['comic' => $comic_update->id])->with('message', 'Record correttamente aggiornato');
 
 
     }
@@ -103,7 +103,7 @@ class ComicController extends Controller
         $comic = Comic::findorFail($id);
         $comic->delete();
 
-        return redirect()->route('comics.index')->with('message', 'Record deleted successfully');
+        return redirect()->route('comics.index')->with('message', 'Record cancellato con successo');
        
     }
 }
