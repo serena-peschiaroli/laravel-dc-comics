@@ -78,7 +78,7 @@ class ComicController extends Controller
 
         // $comic->save();
 
-        return redirect()->route('comics.show', ['comic'=>$comic->id] );
+        return redirect()->route('comics.show', ['comic'=>$comic->id] )->with('message', 'Comic created successfully');
     }
 
     /**
@@ -154,6 +154,7 @@ class ComicController extends Controller
         $comic = Comic::findorFail($id);
         $comic->delete();
 
-        return redirect()->route('comics.index')->with('messagge', 'Record deleted successfully');
+        return redirect()->route('comics.index')->with('message', 'Record deleted successfully');
+       
     }
 }
